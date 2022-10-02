@@ -19,6 +19,11 @@ module Sentry
       end
 
       def to_s
+        p '========================================='
+        p JSON.generate(@headers)
+        p '========================================='
+        p JSON.generate(@payload)
+        p '========================================='
         <<~ITEM
           #{JSON.generate(@headers)}
           #{JSON.generate(@payload)}
@@ -27,6 +32,7 @@ module Sentry
 
       def serialize
         result = to_s
+        asd
 
         if result.bytesize > MAX_SERIALIZED_PAYLOAD_SIZE
           remove_breadcrumbs!
