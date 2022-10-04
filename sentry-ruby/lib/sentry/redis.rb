@@ -30,7 +30,8 @@ module Sentry
       sentry_span = transaction.start_child(op: OP_NAME, start_timestamp: Sentry.utc_now.to_f)
 
       yield.tap do
-        sentry_span.set_description(commands_description)
+        # sentry_span.set_description(commands_description)
+        sentry_span.set_description('')
         sentry_span.set_data(:server, server_description)
         sentry_span.set_timestamp(Sentry.utc_now.to_f)
       end
