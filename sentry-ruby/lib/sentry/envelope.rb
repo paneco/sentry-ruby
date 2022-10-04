@@ -19,11 +19,11 @@ module Sentry
       end
 
       def to_s
-        p '========================================='
+        p 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
         p @headers
-        p '========================================='
+        p 'BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB'
         p @payload
-        p '========================================='
+        p 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC'
         <<~ITEM
           #{JSON.generate(@headers)}
           #{JSON.generate(@payload)}
