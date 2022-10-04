@@ -63,7 +63,7 @@ module Sentry
     attr_accessor :transaction
 
     def initialize(
-      description: nil,
+      description: '',
       op: nil,
       status: nil,
       trace_id: nil,
@@ -78,7 +78,7 @@ module Sentry
       @sampled = sampled
       @start_timestamp = start_timestamp || Sentry.utc_now.to_f
       @timestamp = timestamp
-      @description = ''
+      @description = description.force_encoding("ISO-8859-1").encode("UTF-8")
       @op = op
       @status = status
       @data = {}
@@ -112,7 +112,7 @@ module Sentry
         parent_span_id: @parent_span_id,
         start_timestamp: @start_timestamp,
         timestamp: @timestamp,
-        description: '',
+        description: @description.force_encoding("ISO-8859-1").encode("UTF-8"),
         op: @op,
         status: @status,
         tags: @tags,
@@ -127,7 +127,7 @@ module Sentry
         trace_id: @trace_id,
         span_id: @span_id,
         parent_span_id: @parent_span_id,
-        description: '',
+        description: @description.force_encoding("ISO-8859-1").encode("UTF-8"),
         op: @op,
         status: @status
       }
@@ -178,17 +178,7 @@ module Sentry
     # Sets the span's description.
     # @param description [String] description of the span.
     def set_description(description)
-      @description = ''
-
-      # if description.valid_encoding?
-      #   @description = description
-      # else
-      #   if description.respond_to?(:force_encoding)
-      #     @description = description.force_encoding("ISO-8859-1").encode("UTF-8")
-      #   else
-      #     @description = ''
-      #   end
-      # end
+      @description = description.force_encoding("ISO-8859-1").encode("UTF-8")
     end
 
 
