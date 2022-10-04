@@ -178,7 +178,7 @@ module Sentry
     # Sets the span's description.
     # @param description [String] description of the span.
     def set_description(description)
-      @description = description.force_encoding("ISO-8859-1").encode("UTF-8")
+      @description = description.dup.force_encoding("ISO-8859-1").encode("UTF-8")
     end
 
 
