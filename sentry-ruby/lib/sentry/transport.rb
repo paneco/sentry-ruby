@@ -146,7 +146,7 @@ module Sentry
       )
 
       envelope.add_item(
-        { type: item_type.dup.force_encoding("UTF-8").encode("UTF-8"), content_type: 'application/json' },
+        { type: item_type, content_type: 'application/json' },
         event_payload
       )
 
@@ -176,7 +176,7 @@ module Sentry
         # 'event' has to be mapped to 'error'
         category = type == 'transaction' ? 'transaction' : 'error'
 
-        { reason: reason.dup.force_encoding("UTF-8").encode("UTF-8"), category: category.dup.force_encoding("UTF-8").encode("UTF-8"), quantity: val }
+        { reason: reason, category: category, quantity: val }
       end
 
       item_header = { type: 'client_report' }
